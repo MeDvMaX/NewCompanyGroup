@@ -1,0 +1,34 @@
+<div ng-mouseleave="show=false" class="container" style="position:relative">
+    <div>
+        <md-icon ng-click="click(rootNode)" ng-class="rotate" class="arrow material-icons">
+            chevron_right
+        </md-icon>
+    </div>
+    <div ng-click="clickOnStar()" style="position: relative;width: 45px;line-height: 45px;">
+        <md-icon class="size">stars</md-icon>
+    </div>
+    <div style="width: 200px; overflow: hidden;">
+        <div class="textBlock" ng-bind="rootNode.name"></div>
+        <div class="textBlock" ng-bind="rootNode.band"></div>
+    </div>
+    <div>
+        <div ng-mouseenter="show=true" ng-click="show = !show" id="main-button size">
+                <md-icon>more_vert</md-icon>
+        <div class="absolute add">
+            <md-button ng-show="show" ng-click="add(rootNode)" aria-label="add"
+                       class="material-icons md-fab md-raised md-mini sample-show-hide">
+                <md-icon>add</md-icon>
+            </md-button>
+        </div>
+        <div class="absolute del">
+            <md-button ng-show="show" ng-click="delete($parent.$parent.rootNode, rootNode)" aria-label="delete"
+                       class="material-icons md-fab md-raised md-mini sample-show-hide">
+                <md-icon>delete</md-icon>
+            </md-button>
+        </div>
+        </div>
+    </div>
+</div>
+
+!
+

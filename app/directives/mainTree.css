@@ -1,0 +1,81 @@
+
+.slow,
+.slow.slow{
+    animation: open ease-in-out 1s;
+}
+
+.slow.ng-hide,
+.slow.ng-hide .slow{
+    animation: close ease-in-out 1s;
+}
+.middle,
+.middle.middle{
+    animation: open ease-in-out .5s;
+}
+
+.middle.ng-hide,
+.middle.ng-hide .middle{
+    animation: close ease-in-out .5s;
+}
+.fast,
+.fast.fast{
+    animation: open ease-in-out .3s;
+}
+
+.fast.ng-hide,
+.fast.ng-hide .fast{
+    animation: close ease-in-out .3s;
+}
+
+.animate-repeat.ng-enter {
+    transition: all ease-in-out .3s;
+}
+
+.animate-repeat.ng-leave {
+    transition: all ease-in-out .5s;
+}
+
+.animate-repeat.ng-leave.ng-leave-active,
+.animate-repeat.ng-enter {
+    opacity: 0;
+    max-height: 0;
+}
+
+.animate-repeat.ng-leave,
+.ng-enter-active {
+    opacity: 1;
+    max-height: 500px;
+}
+
+@keyframes open {
+    0% {
+        transition: opacity ease-in-out, max-height ease-in-out;
+        opacity: 0;
+        max-height: 0;
+    }
+    99% {
+        max-height: 100vh;
+        opacity: 1;
+    }
+    100% {
+        transition: none;
+        max-height: 10000vh;
+    }
+}
+
+@keyframes close {
+    0% {
+        transition: none;
+        max-height: 10000vh;
+        opacity: 1;
+    }
+    0.0001% {
+        max-height: 100vh;
+        opacity: 1;
+    }
+    100%{
+        transition: opacity ease-in-out, max-height ease-in-out;
+        max-height: 0;
+        opacity: 0;
+    }
+}

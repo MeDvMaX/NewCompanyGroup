@@ -1,0 +1,16 @@
+/* app css stylesheet */
+
+html, body {
+  height: 100%;
+  width: 100%;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  font: 1.2em Tahoma, Arial;
+  min-height: 100%;
+  transition: all 1s ease;
+  background-image: url("images/html-color-codes-color-tutorials-hero-00e10b1f.jpg");
+  background-size: cover;
+}
