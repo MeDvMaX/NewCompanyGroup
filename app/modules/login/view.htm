@@ -1,3 +1,24 @@
-<md-button class="md-primary md-raised">
-    Click
-</md-button>
+
+<md-dialog aria-label="Login">
+    <md-dialog-content layout="row">
+		<div flex='45' class="logo">
+			<svg>
+				<text fill="white" x="10" y="90">NCG</text>
+				<text fill="white" x="15" y="140">Hello {{user.login}}!</text>  
+			</svg> 
+		</div>
+		<div flex class="md-dialog-content">
+	      <md-input-container>
+	        <label>Login</label>
+	        <input ng-model="user.login">
+	      </md-input-container>
+
+	      <md-input-container>
+	        <label>Password</label>
+	        <input ng-model="user.pass" type="Password">
+	      </md-input-container>
+    </div>
+    </md-dialog-content>
+</md-dialog>
+
+<link rel="stylesheet" href="login.css">

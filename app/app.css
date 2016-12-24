@@ -11,6 +11,95 @@ body {
   font: 1.2em Tahoma, Arial;
   min-height: 100%;
   transition: all 1s ease;
-  background-image: url("images/html-color-codes-color-tutorials-hero-00e10b1f.jpg");
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/mision.jpg) no-repeat top center;
   background-size: cover;
 }
+md-dialog{
+	height: 300px;
+	width: 500px;
+	background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/mision.jpg) top center;
+	background-size: 230%;
+}
+md-dialog-content{
+	height: 100%;
+	color: #fff;
+	background: -moz-linear-gradient(top, rgba(0,0,0,.7) 63%, rgba(0,0,0,0) 67%, rgba(0,0,0,0) 100%);
+	background: linear-gradient(top, rgba(0,0,0,.7) 63%, rgba(0,0,0,0) 75%, rgba(0,0,0,0) 100%);
+}
+.logo{
+	fill-opacity: .2;
+	font-family: 'Open Sans', sans-serif;
+	font-weight: bold;
+	font-size: 4.5em;
+	user-select: none;
+	-moz-user-select: none;
+	cursor: default;
+}
+.logo>svg>text:nth-child(even){
+	font-size: 0.3em;
+}
+.logo>svg{
+	width: 100%;
+}
+/* html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizelegibility;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: 'Open Sans', sans-serif;
+}
+
+.text {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 250px;
+  z-index: 10;
+}
+
+svg {
+  width: 100%;
+  height: inherit;
+}
+svg text {
+  text-anchor: middle;
+}
+svg #alpha {
+  fill: #666666;
+}
+svg #title {
+  letter-spacing: -2px;
+  font-size: 6em;
+  font-weight: 800;
+}
+svg #subtitle {
+  letter-spacing: 8px;
+  font-size: 1.2em;
+  font-weight: 300;
+  text-transform: uppercase;
+}
+svg #base {
+  fill: black;
+  -webkit-mask: url(#mask);
+          mask: url(#mask);
+}
+
+section.intro {
+  background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/mision.jpg) no-repeat top center;
+  background-size: cover;
+  position: relative;
+  width: 100%;
+  min-height: 100%;
+}
+
+@keyframes alpha {
+  50%{fill: #000;}
+} */
