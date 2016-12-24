@@ -5,7 +5,6 @@
     $mdDialog.show({
       templateUrl: 'view.htm',
       clickOutsideToClose:true,
-      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
     })
     .then(function(answer) {
       $scope.status = 'You said the information was "' + answer + '".';
