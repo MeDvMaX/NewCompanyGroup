@@ -1,24 +1,27 @@
 
-<md-dialog aria-label="Login">
-    <md-dialog-content layout="row">
-		<div flex='45' class="logo">
-			<svg>
-				<text fill="white" x="10" y="90">NCG</text>
-				<text fill="white" x="15" y="140">Hello {{user.login}}!</text>  
-			</svg> 
-		</div>
-		<div flex class="md-dialog-content">
-	      <md-input-container>
-	        <label>Login</label>
-	        <input ng-model="user.login">
-	      </md-input-container>
+	<md-dialog aria-label="Login">
+	    <md-dialog-content layout="row">
+			<div flex='45' class="logo">
+				<svg>
+					<text fill="white" x="10" y="90">NCG</text>
+					<text fill="white" x="15" y="140">Hello {{user.login}}!</text>  
+				</svg> 
+			</div>
+			<div flex class="md-dialog-content">
+		      <md-input-container>
+		        <label>Login</label>
+		        <input ng-model="user.login">
+		      </md-input-container>
 
-	      <md-input-container>
-	        <label>Password</label>
-	        <input ng-model="user.pass" type="Password">
-	      </md-input-container>
-    </div>
-    </md-dialog-content>
-</md-dialog>
-
-<link rel="stylesheet" href="login.css">
+		      <md-input-container>
+		        <label>Password</label>
+		        <input ng-model="user.pass" type="Password">
+		      </md-input-container>
+		      <section layout="row" layout-sm="column" layout-align="center center" layout-wrap>
+			      <md-button class="md-raised md-primary" ng-click="login()">
+			      	Log-in
+			      </md-button>
+		      </section>
+	    </div>
+	    </md-dialog-content>
+	</md-dialog>

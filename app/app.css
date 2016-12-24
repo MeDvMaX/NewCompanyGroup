@@ -1,6 +1,6 @@
 /* app css stylesheet */
 
-html, body {
+html, body, ui-view {
     height: 100%;
     width: 100%;
     padding: 0;
@@ -37,6 +37,10 @@ md-dialog-content{
 }
 .logo>svg>text:nth-child(even){
     font-size: 0.3em;
+    color: #fff;
+}
+md-input-container{
+	margin: 10px 0;
 }
 .logo>svg{
     width: 100%;
