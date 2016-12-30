@@ -18,10 +18,11 @@
                 });
     };
 
-    var controllerLoginForm = function ($scope, $mdDialog) {
+    var controllerLoginForm = function ($scope, $mdDialog, $state) {
         $scope.login = function () {
             if ($scope.user.login === $scope.user.pass) {
                 $mdDialog.hide();
+                $state.go('dashboard');
             } else {
 
             }
