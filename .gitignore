@@ -1,2 +1,8 @@
 app/components/*
-/nbproject/private/
+nbproject/*
+e2e-tests/*
+.idea/*
+NewCompanyGroup.iml
+LICENSE
+karma.conf.js
+.travis.yml
