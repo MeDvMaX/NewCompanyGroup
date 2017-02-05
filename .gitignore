@@ -1,6 +1,7 @@
 app/components/*
 nbproject/*
 e2e-tests/*
+node_modules/*
 .idea/*
 NewCompanyGroup.iml
 LICENSE
