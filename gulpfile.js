@@ -15,8 +15,26 @@ gulp.task('sass:watch', function () {
 	gulp.watch('./app/**/*.scss', ['sass']);
 });
 
-gulp.task('build', function () {
-    return gulp.src(['./app/**/*.js', './app/**'])
+gulp.task('js', function () {
+    return gulp.src('./app/**/*.js')
+        .pipe(gulp.dest('./dist'))
+});
+
+gulp.task('js:watch', function () {
+	gulp.watch('./app/**/*.js', ['js']);
+});
+
+gulp.task('html', function () {
+    return gulp.src('./app/**/*.html')
+        .pipe(gulp.dest('./dist'))
+});
+
+gulp.task('html:watch', function () {
+	gulp.watch('./app/**/*.html', ['html']);
+});
+
+gulp.task('ico', function () {
+	return gulp.src(['./app/*.ico', './app/**/*.jpg'])
         .pipe(gulp.dest('./dist'))
 });
 
@@ -34,4 +52,6 @@ gulp.task('bower', function() {
     return bower();
 });
 
-gulp.task('default', ['bower', 'sass', 'sass:watch']);
+gulp.task('serve', ['html:watch', 'js:watch', 'sass:watch']);
+
+gulp.task('default', ['bower', 'sass', 'js', 'html', 'ico']);	
