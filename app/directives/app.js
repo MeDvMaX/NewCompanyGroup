@@ -19,6 +19,6 @@ angular.module('app', ['ngMaterial'])
                 } else {
                     $scope.class = 'animate-repeat slow';
                 }
-            },
-        }
+            }
+        };
     });

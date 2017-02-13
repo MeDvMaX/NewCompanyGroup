@@ -6,10 +6,22 @@
         'ui.router'
     ];
 
+    var controllerLoginForm = function ($scope, $mdDialog, $state) {
+        $scope.login = function () {
+            if ($scope.user.login === $scope.user.pass) {
+                $mdDialog.hide();
+                $state.go('dashboard');
+            }
+            // else {
+            //
+            // }
+        };
+    };
+
     var controllerLoginRouter = function ($scope, $mdDialog) {
         $mdDialog.show({
             controller: controllerLoginForm,
-            templateUrl: 'modules/login/view.htm'
+            templateUrl: 'modules/login/view.html'
         })
                 .then(function (answer) {
                     $scope.status = 'You said the information was "' + answer + '".';
@@ -18,26 +30,15 @@
                 });
     };
 
-    var controllerLoginForm = function ($scope, $mdDialog, $state) {
-        $scope.login = function () {
-            if ($scope.user.login === $scope.user.pass) {
-                $mdDialog.hide();
-                $state.go('dashboard');
-            } else {
-
-            }
-        }
-    };
-
-    var controllerDashboard = function ($scope, $mdDialog) {
-        // TODO
-    };
+    // var controllerDashboard = function ($scope, $mdDialog) {
+    //     // TODO
+    // };
 
     var configFunction = function ($mdThemingProvider, $stateProvider, $urlRouterProvider) {
         $stateProvider
                 .state('dashboard', {
-                    url: '/dashboard',
-                    controller: controllerDashboard
+                    url: '/dashboard'
+                    // controller: controllerDashboard
                 })
                 .state('login', {
                     url: '/login',
@@ -57,24 +58,7 @@
                 .dark();
     };
 
-    var controllerFunction = function ($scope, $mdDialog) {
-
-        $scope.showAdvanced = function (ev) {
-            $mdDialog.show({
-                controller: DialogController,
-                templateUrl: 'modules/login/view.htm',
-                targetEvent: ev,
-                clickOutsideToClose: true,
-            })
-                    .then(function (answer) {
-                        $scope.status = 'You said the information was "' + answer + '".';
-                    }, function () {
-                        $scope.status = 'You cancelled the dialog.';
-                    });
-        };
-    }
-
-    function DialogController($scope, $mdDialog) {
+    var DialogController = function ($scope, $mdDialog) {
         $scope.user = {
             login: "",
             pass: ""
@@ -87,9 +71,26 @@
         $scope.cancel = function () {
             $mdDialog.cancel();
         };
-    }
+    };
+
+    var controllerFunction = function ($scope, $mdDialog) {
+
+        $scope.showAdvanced = function (ev) {
+            $mdDialog.show({
+                controller: DialogController,
+                templateUrl: 'modules/login/view.htm',
+                targetEvent: ev,
+                clickOutsideToClose: true
+            })
+                    .then(function (answer) {
+                        $scope.status = 'You said the information was "' + answer + '".';
+                    }, function () {
+                        $scope.status = 'You cancelled the dialog.';
+                    });
+        };
+    };
 
     angular.module('app', dependencies)
             .config(configFunction)
-            .controller('appController', controllerFunction)
+            .controller('appController', controllerFunction);
 })();
