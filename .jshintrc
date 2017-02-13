@@ -1,0 +1,30 @@
+{
+  "esnext": true,
+  "bitwise": false,
+  "curly": true,
+  "eqeqeq": true,
+  "forin": true,
+  "latedef": true,
+  "maxdepth": 3,
+  "noarg": true,
+  "nocomma": true,
+  "nonew": true,
+  "undef": true,
+  "unused": true,
+  "eqnull": true,
+  "browser": true,
+  "devel": true,
+  "jquery": true,
+  "node": true,
+  "globalstrict": true,
+  "strict": true,
+  "shadow": "inner",
+  "funcscope": true,
+  "globals": {
+    "angular": true,
+    "L": true,
+    "moment": true,
+    "_": true,
+    "tinycolor": true
+  }
+}

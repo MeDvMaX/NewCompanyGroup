@@ -1,27 +1,33 @@
 'use strict';
 
 var gulp = require('gulp'),
-	sass = require('gulp-sass'),
-	bower = require('gulp-bower');
-    // jshint = require('gulp-jshint');
+    sass = require('gulp-sass'),
+    bower = require('gulp-bower'),
+    webserver = require('gulp-webserver'),
+    jshint = require('gulp-jshint');
 
-gulp.task('sass', function  () {
-	return gulp.src('./app/**/*.scss')
-	.pipe(sass())
-	.pipe(gulp.dest('./dist'))
+var webServerPort = '9000';
+
+
+gulp.task('sass', function () {
+    return gulp.src('./app/**/*.scss')
+        .pipe(sass())
+        .pipe(gulp.dest('./dist'))
 });
 
 gulp.task('sass:watch', function () {
-	gulp.watch('./app/**/*.scss', ['sass']);
+    gulp.watch('./app/**/*.scss', ['sass']);
 });
 
 gulp.task('js', function () {
     return gulp.src('./app/**/*.js')
+        .pipe(jshint('.jshintrc'))
+        .pipe(jshint.reporter('jshint-stylish'))
         .pipe(gulp.dest('./dist'))
 });
 
 gulp.task('js:watch', function () {
-	gulp.watch('./app/**/*.js', ['js']);
+    gulp.watch('./app/**/*.js', ['js']);
 });
 
 gulp.task('html', function () {
@@ -30,28 +36,32 @@ gulp.task('html', function () {
 });
 
 gulp.task('html:watch', function () {
-	gulp.watch('./app/**/*.html', ['html']);
+    gulp.watch('./app/**/*.html', ['html']);
 });
 
-gulp.task('ico', function () {
-	return gulp.src(['./app/*.ico', './app/**/*.jpg'])
+gulp.task('img', function () {
+    return gulp.src(['./app/*.ico', './app/**/*.jpg'])
         .pipe(gulp.dest('./dist'))
 });
 
-gulp.task("jshint", function() {
-    gulp.src(devDir + "/js/**/*.js")
-        .pipe(jshint())
-        .pipe(jshint.reporter("default"));
+gulp.task('webserver', function () {
+    gulp.src('dist')
+        .pipe(webserver({
+            // livereload: true,
+            port: webServerPort,
+            directoryListing: true,
+            open: true
+        }));
 });
 
 var config = {
     bowerDir: './dist/bower_components'
 };
 
-gulp.task('bower', function() {
+gulp.task('bower', function () {
     return bower();
 });
 
-gulp.task('serve', ['html:watch', 'js:watch', 'sass:watch']);
+gulp.task('server', ['build', 'html:watch', 'js:watch', 'sass:watch', 'webserver']);
 
-gulp.task('default', ['bower', 'sass', 'js', 'html', 'ico']);	
+gulp.task('build', ['bower', 'sass', 'js', 'html', 'img']);

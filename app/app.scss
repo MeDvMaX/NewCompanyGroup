@@ -5,28 +5,28 @@ html {
     width: 100%;
     padding: 0;
     margin: 0;
-    body {
+    > body {
         font: 1.2em Tahoma, Arial;
         min-height: 100%;
         transition: all 1s ease;
-        background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/mision.jpg) no-repeat top center;
+        background: url(images/mision.jpg) no-repeat top center;
         background-size: cover;
         md-dialog {
             height: 300px;
             width: 500px;
-            background: url(https://s3-us-west-2.amazonaws.com/s.cdpn.io/953/mision.jpg) top center;
+            background: url(images/mision.jpg) top center;
             background-size: 230%;
             md-dialog-content {
                 height: 100%;
                 color: #fff;
-                background: -moz-linear-gradient(top, rgba(0,0,0,.7) 63%, rgba(0,0,0,0) 67%, rgba(0,0,0,0) 100%);
-                background: linear-gradient(top, rgba(0,0,0,.7) 63%, rgba(0,0,0,0) 75%, rgba(0,0,0,0) 100%);
+                background: -moz-linear-gradient(top, rgba(0, 0, 0, .7) 63%, rgba(0, 0, 0, 0) 67%, rgba(0, 0, 0, 0) 100%);
+                background: linear-gradient(top, rgba(0, 0, 0, .7) 63%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0) 100%);
             }
         }
     }
 }
 
-.logo{
+.logo {
     fill-opacity: .2;
     font-family: 'Open Sans', sans-serif;
     font-weight: bold;
@@ -35,19 +35,24 @@ html {
     -moz-user-select: none;
     cursor: default;
 }
-.logo>svg>text:nth-child(even){
+
+.logo > svg > text:nth-child(even) {
     font-size: 0.3em;
     color: #fff;
 }
-md-input-container{
-	margin: 10px 0;
+
+md-input-container {
+    margin: 10px 0;
 }
-md-input-container> .md-input {
-    color: rgba(255,255,255,.6);
+
+md-input-container > .md-input {
+    color: rgba(255, 255, 255, .6);
 }
-.md-button{
+
+.md-button {
     margin-top: 36px;
 }
-.logo>svg{
+
+.logo > svg {
     width: 100%;
 }
