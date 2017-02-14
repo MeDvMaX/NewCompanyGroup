@@ -56,4 +56,4 @@ gulp.task('webserver', function () {
 
 gulp.task('server', ['build', 'html:watch', 'js:watch', 'sass:watch', 'webserver']);
 
-gulp.task('build', ['bower', 'sass', 'js', 'html', 'img']);
+gulp.task('build', ['sass', 'js', 'html', 'img']);
