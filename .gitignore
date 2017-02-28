@@ -4,6 +4,7 @@ node_modules/*
 dist/*
 .idea/*
 NewCompanyGroup.iml
+npm-debug.log
 LICENSE
 karma.conf.js
 .travis.yml
