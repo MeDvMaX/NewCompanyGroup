@@ -2,15 +2,21 @@
 
 var gulp = require('gulp'),
     sass = require('gulp-sass'),
+    sassGlob = require('gulp-sass-glob'),
     bower = require('gulp-bower'),
     webserver = require('gulp-webserver'),
-    jshint = require('gulp-jshint');
+    jshint = require('gulp-jshint'),
+    del = require('del');
 
 var webServerPort = '9000';
 
+gulp.task('clean', function () {
+    return del.sync('dist');
+});
 
 gulp.task('sass', function () {
     return gulp.src('./app/**/*.scss')
+        .pipe(sassGlob())
         .pipe(sass())
         .pipe(gulp.dest('./dist'))
 });
@@ -56,4 +62,4 @@ gulp.task('webserver', function () {
 
 gulp.task('server', ['build', 'html:watch', 'js:watch', 'sass:watch', 'webserver']);
 
-gulp.task('build', ['sass', 'js', 'html', 'img']);
+gulp.task('build', ['clean', 'sass', 'js', 'html', 'img']);

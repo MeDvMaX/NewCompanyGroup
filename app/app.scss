@@ -1,4 +1,9 @@
-/* app s    css stylesheet */
+/* app scss stylesheet */
+
+@import "modules/**/*.scss";
+
+$black: rgba(0,0,0,.87);
+$white: rgba(255,255,255,.67);
 
 html {
     height: 100%;
@@ -14,12 +19,16 @@ html {
         md-dialog {
             height: 300px;
             width: 500px;
+            min-height: 300px;
+            min-width: 500px;
             background: url(images/mision.jpg) top center;
+            //background: rgba(212,232,93,.16);
             background-size: 230%;
             md-dialog-content {
                 height: 100%;
                 color: #fff;
                 background: -moz-linear-gradient(top, rgba(0, 0, 0, .7) 63%, rgba(0, 0, 0, 0) 67%, rgba(0, 0, 0, 0) 100%);
+                background: -webkit-linear-gradient(top, rgba(0, 0, 0, .7) 63%, rgba(0, 0, 0, 0) 67%, rgba(0, 0, 0, 0) 100%);
                 background: linear-gradient(top, rgba(0, 0, 0, .7) 63%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0) 100%);
             }
         }
@@ -46,7 +55,7 @@ md-input-container {
 }
 
 md-input-container > .md-input {
-    color: rgba(255, 255, 255, .6);
+    color: $white;
 }
 
 .md-button {

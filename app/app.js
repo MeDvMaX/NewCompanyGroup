@@ -30,15 +30,20 @@
                 });
     };
 
-    // var controllerDashboard = function ($scope, $mdDialog) {
-    //     // TODO
-    // };
+    var controllerDashboard = function ($scope) {
+        var dashboard = {
+            name: 'null',
+            widgets: []
+        };
+        console.log(dashboard, $scope);
+    };
 
     var configFunction = function ($mdThemingProvider, $stateProvider, $urlRouterProvider) {
         $stateProvider
                 .state('dashboard', {
-                    url: '/dashboard'
-                    // controller: controllerDashboard
+                    url: '/dashboard',
+                    templateUrl: 'modules/dashboard/dashboard.html',
+                    controller: controllerDashboard
                 })
                 .state('login', {
                     url: '/login',

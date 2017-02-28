@@ -1,0 +1,12 @@
+$black: rgba(0,0,0,.87);
+$white: rgba(255,255,255,.67);
+
+.md_dashboard {
+    background-color: $black;
+    color: $white;
+    md-toolbar {
+        padding-left: 20px;
+        background-color: $black;
+        color: $white;
+    }
+}
