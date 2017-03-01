@@ -1,12 +1,18 @@
-$black: rgba(0,0,0,.87);
-$white: rgba(255,255,255,.67);
+$black: rgba(0, 0, 0, .87);
+$white: rgba(255, 255, 255, .67);
 
 .md_dashboard {
     background-color: $black;
     color: $white;
     md-toolbar {
-        padding-left: 20px;
-        background-color: $black;
         color: $white;
+        button {
+            > md-icon,
+            .material-icons {
+                color: $white;
+                -webkit-transform: scale(1.5);
+                transform: scale(1.5);
+            }
+        }
     }
 }

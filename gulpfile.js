@@ -1,18 +1,17 @@
 'use strict';
 
-var gulp = require('gulp'),
-    sass = require('gulp-sass'),
-    sassGlob = require('gulp-sass-glob'),
-    bower = require('gulp-bower'),
-    webserver = require('gulp-webserver'),
-    jshint = require('gulp-jshint'),
-    del = require('del');
+var gulp        = require('gulp'),
+    sass        = require('gulp-sass'),
+    sassGlob    = require('gulp-sass-glob'),
+    bower       = require('gulp-bower'),
+    webserver   = require('gulp-webserver'),
+    jshint      = require('gulp-jshint');
 
 var webServerPort = '9000';
 
-gulp.task('clean', function () {
-    return del.sync('dist');
-});
+// gulp.task('clean', function () {
+//     return del.sync(['./dist/*', '!./dist/components/*']);
+// });
 
 gulp.task('sass', function () {
     return gulp.src('./app/**/*.scss')
@@ -53,7 +52,7 @@ gulp.task('img', function () {
 gulp.task('webserver', function () {
     gulp.src('dist')
         .pipe(webserver({
-            // livereload: true,
+            livereload: true,
             port: webServerPort,
             directoryListing: true,
             open: true
@@ -62,4 +61,4 @@ gulp.task('webserver', function () {
 
 gulp.task('server', ['build', 'html:watch', 'js:watch', 'sass:watch', 'webserver']);
 
-gulp.task('build', ['clean', 'sass', 'js', 'html', 'img']);
+gulp.task('build', ['sass', 'js', 'html', 'img']);

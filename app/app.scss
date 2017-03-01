@@ -1,9 +1,8 @@
 /* app scss stylesheet */
-
 @import "modules/**/*.scss";
 
-$black: rgba(0,0,0,.87);
-$white: rgba(255,255,255,.67);
+$black: rgba(0, 0, 0, .87);
+$white: rgba(255, 255, 255, .67);
 
 html {
     height: 100%;
@@ -12,26 +11,9 @@ html {
     margin: 0;
     > body {
         font: 1.2em Tahoma, Arial;
-        min-height: 100%;
         transition: all 1s ease;
         background: url(images/mision.jpg) no-repeat top center;
         background-size: cover;
-        md-dialog {
-            height: 300px;
-            width: 500px;
-            min-height: 300px;
-            min-width: 500px;
-            background: url(images/mision.jpg) top center;
-            //background: rgba(212,232,93,.16);
-            background-size: 230%;
-            md-dialog-content {
-                height: 100%;
-                color: #fff;
-                background: -moz-linear-gradient(top, rgba(0, 0, 0, .7) 63%, rgba(0, 0, 0, 0) 67%, rgba(0, 0, 0, 0) 100%);
-                background: -webkit-linear-gradient(top, rgba(0, 0, 0, .7) 63%, rgba(0, 0, 0, 0) 67%, rgba(0, 0, 0, 0) 100%);
-                background: linear-gradient(top, rgba(0, 0, 0, .7) 63%, rgba(0, 0, 0, 0) 75%, rgba(0, 0, 0, 0) 100%);
-            }
-        }
     }
 }
 
