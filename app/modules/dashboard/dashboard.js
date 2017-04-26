@@ -1,16 +1,14 @@
 'use strict';
+
 (function () {
-    var serviceFunction = function ($scope) {
+    var serviceFunction = function ($scope, $mdSidenav) {
         console.info('sddds');
         var dashboard = {
             name: 'null',
             widgets: []
         };
-        $scope.toggleLeft = function () {
-            alert('sddd');
-        }
     };
 
-    angular.module('dashboard')
+    angular.module('dashboard', [])
         .controller('DashboardController', serviceFunction);
 })();

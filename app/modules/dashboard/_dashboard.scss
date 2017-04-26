@@ -4,6 +4,9 @@ $white: rgba(255, 255, 255, .67);
 .md_dashboard {
     background-color: $black;
     color: $white;
+    section {
+        height: 100%;
+    }
     md-toolbar {
         color: $white;
         button {

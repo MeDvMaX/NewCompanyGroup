@@ -1,7 +1,7 @@
 <div class="md_dashboard">
     <md-toolbar md-scroll-shrink>
         <div class="md-toolbar-tools">
-            <md-button class="md-icon-button" aria-label="Settings" ng-disabled="true">
+            <md-button class="md-icon-button" ng-click="open = !open" aria-label="Settings">
                 <md-icon>list</md-icon>
             </md-button>
             <h3>
@@ -11,50 +11,25 @@
             </h3>
         </div>
     </md-toolbar>
-    <md-sidenav md-component-id="left"
-                class="md-sidenav-left"
-                md-whiteframe="4">
-        <md-button ng-click="" class="md-primary" hide-gt-md>
-            Close
-        </md-button>
-    </md-sidenav>
-    <!--<section layout="row" flex>-->
+    <section layout="row" flex>
+        <md-sidenav class="md-sidenav-left"
+                    md-component-id="left"
+                    md-whiteframe="4"
+                    md-is-locked-open="open">
+            
+            <md-content layout-margin>
 
-        <!--<md-sidenav class="md-sidenav-left" md-component-id="left"-->
-                    <!--md-disable-backdrop md-whiteframe="4">-->
-
-            <!--<md-toolbar class="md-theme-indigo">-->
-                <!--<h1 class="md-toolbar-tools">Disabled Backdrop</h1>-->
-            <!--</md-toolbar>-->
-
-            <!--<md-content layout-margin>-->
-                <!--<p>-->
-                    <!--This sidenav is not showing any backdrop, where users can click on it, to close the sidenav.-->
-                <!--</p>-->
-                <!--<md-button ng-click="toggleLeft()" class="md-accent">-->
-                    <!--Close this Sidenav-->
-                <!--</md-button>-->
-            <!--</md-content>-->
-
-        <!--</md-sidenav>-->
-
-        <!--<md-content flex layout-padding>-->
-
-            <!--<div layout="column" layout-align="top center">-->
-                <!--<p>-->
-                    <!--Developers can also disable the backdrop of the sidenav.<br/>-->
-                    <!--This will disable the functionality to click outside to close the sidenav.-->
-                <!--</p>-->
-
-                <!--<div>-->
-                    <!--<md-button ng-click="toggleLeft()" class="md-raised">-->
-                        <!--Toggle Sidenav-->
-                    <!--</md-button>-->
-                <!--</div>-->
-
+            </md-content>
+        </md-sidenav>
+        <md-content flex layout-padding>
+            <!--<div gridster="gridsterOpts">-->
+                <!--<ul>-->
+                    <!--<li style="border: solid 1px;"gridster-item="item" ng-repeat="item in standardItems">-->
+                        <!--<div class="ddd" style="width: 100%; background: #ddd; padding: 10px 0px">Handle</div>-->
+                        <!--{{ item }}-->
+                    <!--</li>-->
+                <!--</ul>-->
             <!--</div>-->
-
-        <!--</md-content>-->
-
-    <!--</section>-->
+        </md-content>
+    </section>
 </div>
