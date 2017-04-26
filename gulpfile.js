@@ -26,8 +26,8 @@ gulp.task('sass:watch', function () {
 
 gulp.task('js', function () {
     return gulp.src('./app/**/*.js')
-        .pipe(jshint('.jshintrc'))
-        .pipe(jshint.reporter('jshint-stylish'))
+        // .pipe(jshint('.jshintrc'))
+        // .pipe(jshint.reporter('jshint-stylish'))
         .pipe(gulp.dest('./dist'))
 });
 

@@ -3,7 +3,8 @@
 (function () {
     var dependencies = [
         'ngMaterial',
-        'ui.router'
+        'ui.router',
+        'dashboard'
     ];
 
     var controllerLoginForm = function ($scope, $mdDialog, $state) {
@@ -43,7 +44,7 @@
             .state('dashboard', {
                 url: '/dashboard',
                 templateUrl: 'modules/dashboard/dashboard.html',
-                controller: controllerDashboard
+                controller: 'DashboardController'
             })
             .state('login', {
                 url: '/login',
