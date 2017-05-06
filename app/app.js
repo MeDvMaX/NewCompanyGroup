@@ -4,7 +4,8 @@
     var dependencies = [
         'ngMaterial',
         'ui.router',
-        'dashboard'
+        'dashboard',
+        'gridster'
     ];
 
     var controllerLoginForm = function ($scope, $mdDialog, $state) {
@@ -98,5 +99,6 @@
 
     angular.module('app', dependencies)
         .config(configFunction)
-        .controller('appController', controllerFunction);
+        .controller('appController', controllerFunction)
+
 })();

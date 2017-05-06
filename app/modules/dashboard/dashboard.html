@@ -16,20 +16,34 @@
                     md-component-id="left"
                     md-whiteframe="4"
                     md-is-locked-open="open">
-            
+
             <md-content layout-margin>
 
             </md-content>
         </md-sidenav>
         <md-content flex layout-padding>
-            <!--<div gridster="gridsterOpts">-->
-                <!--<ul>-->
-                    <!--<li style="border: solid 1px;"gridster-item="item" ng-repeat="item in standardItems">-->
-                        <!--<div class="ddd" style="width: 100%; background: #ddd; padding: 10px 0px">Handle</div>-->
-                        <!--{{ item }}-->
-                    <!--</li>-->
-                <!--</ul>-->
-            <!--</div>-->
+            <div gridster="gridsterOptions">
+                <ul>
+                    <li gridster-item="widget" ng-repeat="widget in dashboards.widgets">
+                        <div class="box">
+                            <div class="box-header">
+                                <h3>{{ widget.name }}</h3>
+                                <div class="box-header-btns pull-right">
+                                    <a title="settings" ng-click="openSettings(widget)"><i class="glyphicon glyphicon-cog"></i></a>
+                                    <a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
+                                </div>
+                            </div>
+                            <div class="box-content">
+                                <div ng-repeat="item in widget.items">
+                                    <span>
+                                        {{item}}
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+            </div>
         </md-content>
     </section>
 </div>
