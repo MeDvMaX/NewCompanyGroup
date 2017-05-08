@@ -26,5 +26,8 @@
     "gulp-webserver": "^0.9.1",
     "jshint": "^2.9.4",
     "jshint-stylish": "^2.2.1"
+  },
+  "dependencies": {
+    "node-static": "^0.7.9"
   }
 }

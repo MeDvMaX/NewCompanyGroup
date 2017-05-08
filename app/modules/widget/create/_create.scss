@@ -1,0 +1,17 @@
+.create-widget {
+    md-input-container {
+        margin: 30px;
+    }
+
+    > md-dialog-content {
+        background: rgb(133, 133, 133);
+        > .controll-menu {
+            position: fixed;
+            right: 5px;
+            bottom: 5px;
+            > .menu-button {
+
+            }
+        }
+    }
+}

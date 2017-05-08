@@ -1,5 +1,12 @@
-<md-dialog aria-label="CreateWidget">
+<md-dialog class="create-widget" aria-label="CreateWidget">
     <md-dialog-content layout="row">
-
+        <md-input-container>
+            <label>Enter date</label>
+            <md-datepicker ng-model="date"></md-datepicker>
+        </md-input-container>
+        <div class="controll-menu">
+            <md-button class="menu-button" ng-click="create()">add</md-button>
+            <md-button class="menu-button" ng-click="close()">close</md-button>
+        </div>
     </md-dialog-content>
 </md-dialog>

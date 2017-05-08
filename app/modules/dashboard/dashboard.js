@@ -1,17 +1,53 @@
 'use strict';
 
 (function () {
-    var dialogController = function ($scope, $mdDialog) {
-        $scope.user = {
-            login: "",
-            pass: ""
+    var dialogController = function ($scope, $mdDialog, $http) {
+
+        $scope.create = function () {
+            var date = $scope.date,
+                queryDate = date.getDate() +
+                    '/' + date.getMonth() +
+                    '/' + date.getFullYear();
+            $http({
+                method: 'GET',
+                url: 'http://www.cbr.ru/scripts/XML_daily_eng.asp?date_req=' + queryDate,
+                // params: {
+
+                //     what: text,
+                //     point: $scope.paths.c1.latlngs.lng + ',' + $scope.paths.c1.latlngs.lat,
+                //     radius: Math.floor($scope.paths.c1.radius),
+                //     sort: 'distance',
+                //     version: '1.3',
+                //     key: 'ruczoy1743',
+                // }
+            })
+                .then(function (response) {
+                    debugger;
+                    if (response.data.response_code === '200') {
+                        map.markers = new L.FeatureGroup();
+                        for (var i = 0; i < response.data.result.length; i++) {
+                            var latlng = [Number(response.data.result[i].lat), Number(response.data.result[i].lon)];
+                            var marker = L.marker(latlng).bindPopup(L.popup.angular({
+                                template: '<div ng-include="\'popup.html\'"></div>',
+                                compileMessage: true,
+                                minWidth: 200,
+                                controller: ['$content', function ($content) {
+                                }]
+                            }).setContent({
+                                'scope': response.data.result[i],
+                            }));
+                            map.markers.addLayer(marker);
+                        }
+                        map.addLayer(map.markers);
+                    } else {
+                        alert(response.data.error_message);
+                    }
+                }, function (response) {
+                    alert(response.status);
+                });
         };
 
-        $scope.hide = function () {
-            $mdDialog.hide();
-        };
-
-        $scope.cancel = function () {
+        $scope.close = function () {
             $mdDialog.cancel();
         };
     };
@@ -137,27 +173,5 @@
 
 
     angular.module('dashboard', ['gridster'])
-        .controller('DashboardController', serviceFunction)
-        .controller('CustomWidgetCtrl', ['$scope', '$modal',
-            function ($scope, $modal) {
-
-                $scope.remove = function (widget) {
-                    $scope.dashboard.widgets.splice($scope.dashboard.widgets.indexOf(widget), 1);
-                };
-
-                $scope.openSettings = function (widget) {
-                    $modal.open({
-                        scope: $scope,
-                        templateUrl: 'demo/dashboard/widget_settings.html',
-                        controller: 'WidgetSettingsCtrl',
-                        resolve: {
-                            widget: function () {
-                                return widget;
-                            }
-                        }
-                    });
-                };
-
-            }
-        ])
+        .controller('DashboardController', serviceFunction);
 })();
