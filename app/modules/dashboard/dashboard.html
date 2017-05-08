@@ -18,13 +18,20 @@
                     md-is-locked-open="open">
 
             <md-content layout-margin>
-
+                <md-list>
+                    <md-list-item ng-repeat="dashboard in dashboards" ng-click="changeDashboard(this)">
+                        <p>{{dashboard.name}}</p>
+                        <md-button ng-click="addWidget(this)" class="md-icon-button">
+                            <md-icon>add</md-icon>
+                        </md-button>
+                    </md-list-item>
+                </md-list>
             </md-content>
         </md-sidenav>
         <md-content flex layout-padding>
             <div gridster="gridsterOptions">
                 <ul>
-                    <li gridster-item="widget" ng-repeat="widget in dashboards.widgets">
+                    <li gridster-item="widget" ng-repeat="widget in dashboards[dashboardId].widgets">
                         <div class="box">
                             <div class="box-header">
                                 <h3>{{ widget.name }}</h3>

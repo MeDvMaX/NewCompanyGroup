@@ -7,6 +7,19 @@ $blackText: rgb(66, 66, 66);
     color: $white;
     section {
         height: 100%;
+        > md-sidenav {
+            > md-content {
+                margin: 0;
+                overflow: hidden;
+                > md-list {
+                    margin: 0;
+                    overflow: hidden;
+                }
+            }
+        }
+        > md-content {
+            background: rgba(66, 66, 66, .5);
+        }
     }
     md-toolbar {
         color: $white;

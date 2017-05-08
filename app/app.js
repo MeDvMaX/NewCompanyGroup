@@ -32,14 +32,6 @@
             });
     };
 
-    var controllerDashboard = function ($scope) {
-        var dashboard = {
-            name: 'null',
-            widgets: []
-        };
-        console.log(dashboard, $scope);
-    };
-
     var configFunction = function ($mdThemingProvider, $stateProvider, $urlRouterProvider) {
         $stateProvider
             .state('dashboard', {
@@ -65,36 +57,8 @@
             .dark();
     };
 
-    var DialogController = function ($scope, $mdDialog) {
-        $scope.user = {
-            login: "",
-            pass: ""
-        };
-
-        $scope.hide = function () {
-            $mdDialog.hide();
-        };
-
-        $scope.cancel = function () {
-            $mdDialog.cancel();
-        };
-    };
-
     var controllerFunction = function ($scope, $mdDialog) {
 
-        $scope.showAdvanced = function (ev) {
-            $mdDialog.show({
-                controller: DialogController,
-                templateUrl: 'modules/login/view.htm',
-                targetEvent: ev,
-                clickOutsideToClose: true
-            })
-                .then(function (answer) {
-                    $scope.status = 'You said the information was "' + answer + '".';
-                }, function () {
-                    $scope.status = 'You cancelled the dialog.';
-                });
-        };
     };
 
     angular.module('app', dependencies)

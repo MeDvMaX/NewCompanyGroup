@@ -1,8 +1,23 @@
 'use strict';
 
 (function () {
-    var serviceFunction = function ($scope, $mdSidenav) {
-        console.info('sddds');
+    var dialogController = function ($scope, $mdDialog) {
+        $scope.user = {
+            login: "",
+            pass: ""
+        };
+
+        $scope.hide = function () {
+            $mdDialog.hide();
+        };
+
+        $scope.cancel = function () {
+            $mdDialog.cancel();
+        };
+    };
+
+    var serviceFunction = function ($scope, $mdDialog) {
+        $scope.dashboardId = 0;
         $scope.gridsterOptions = {
             columns: 2,
             margins: [8, 8],
@@ -21,39 +36,102 @@
                 handle: '.box-header'
             }
         };
-        $scope.dashboards =
-                {
-                    id: '1',
-                    name: 'Home',
-                    widgets: [{
-                        col: 0,
-                        row: 0,
-                        sizeY: 1,
-                        sizeX: 1,
-                        name: "Widget 1",
-                        items: [
-                            'sddsdsd',
-                            'sddssssd',
-                            'sdsdsdsd'
-                        ]
-                    }, {
-                        col: 2,
-                        row: 1,
-                        sizeY: 1,
-                        sizeX: 1,
-                        name: "Widget 2"
-                    }]
-                };
+        $scope.dashboards = [
+            {
+                id: 0,
+                name: 'Dashboard_1',
+                widgets: [{
+                    col: 0,
+                    row: 0,
+                    sizeY: 1,
+                    sizeX: 1,
+                    name: "Widget 1",
+                    items: [
+                        'sddsdsd',
+                        'sddssdsssd',
+                        'sdsdsdsd'
+                    ]
+                }, {
+                    col: 2,
+                    row: 1,
+                    sizeY: 1,
+                    sizeX: 1,
+                    name: "Widget 2"
+                }]
+            },
+            {
+                id: 1,
+                name: 'Dashboard_2',
+                widgets: [{
+                    col: 0,
+                    row: 0,
+                    sizeY: 1,
+                    sizeX: 1,
+                    name: "Widget 1",
+                    items: [
+                        'sddsdsd',
+                        'sddssssd',
+                        'sdsdsdsd'
+                    ]
+                }, {
+                    col: 2,
+                    row: 1,
+                    sizeY: 1,
+                    sizeX: 1,
+                    name: "Widget 2",
+                    items: [
+                        'sddssssd',
+                        'sdsdsdsd'
+                    ]
+                }]
+            },
+            {
+                id: 2,
+                name: 'Dashboard_3',
+                widgets: [{
+                    col: 0,
+                    row: 0,
+                    sizeY: 1,
+                    sizeX: 1,
+                    name: "Widget 1",
+                    items: [
+                        'sddsdsd',
+                        'sddssssd',
+                        'sdsdsdsd'
+                    ]
+                }, {
+                    col: 2,
+                    row: 1,
+                    sizeY: 1,
+                    sizeX: 1,
+                    name: "Widget 2"
+                }]
+            }
+        ];
+
+        $scope.changeDashboard = function (list) {
+            $scope.dashboardId = list.dashboard.id;
+        };
+
         $scope.clear = function () {
             $scope.dashboard.widgets = [];
         };
 
-        $scope.addWidget = function () {
-            $scope.dashboard.widgets.push({
-                name: "New Widget",
-                sizeX: 1,
-                sizeY: 1
-            });
+        $scope.addWidget = function (list) {
+            $mdDialog.show({
+                controller: dialogController,
+                templateUrl: '/modules/widget/create/view.html'
+            })
+                .then(function (answer) {
+                    $scope.status = 'You said the information was "' + answer + '".';
+                }, function () {
+                    $scope.status = 'You cancelled the dialog.';
+                });
+            // $scope.dashboards[list.dashboard.id].widgets.push({
+            //     name: "New Widget",
+            //     sizeX: 1,
+            //     sizeY: 1
+            // });
         };
     };
 
