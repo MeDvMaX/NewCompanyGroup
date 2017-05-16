@@ -28,6 +28,7 @@
     "jshint-stylish": "^2.2.1"
   },
   "dependencies": {
+    "express": "^4.15.2",
     "node-static": "^0.7.9"
   }
 }
