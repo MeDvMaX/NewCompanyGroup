@@ -29,7 +29,6 @@
   },
   "dependencies": {
     "express": "^4.15.2",
-    "node-static": "^0.7.9",
     "request": "^2.81.0",
     "xml2js": "^0.4.17"
   }

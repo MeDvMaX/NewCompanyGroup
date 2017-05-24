@@ -8,7 +8,12 @@ var gulp        = require('gulp'),
     jshint      = require('gulp-jshint');
 
 var webServerPort = '9000';
-
+var proxyServers = [
+    {
+        source: '/',
+        target: 'http://localhost:9090/'
+    }
+];
 // gulp.task('clean', function () {
 //     return del.sync(['./dist/*', '!./dist/components/*']);
 // });
@@ -54,6 +59,8 @@ gulp.task('webserver', function () {
         .pipe(webserver({
             livereload: true,
             port: webServerPort,
+            enable: true,
+            proxies: proxyServers,
             directoryListing: true,
             open: true
         }));

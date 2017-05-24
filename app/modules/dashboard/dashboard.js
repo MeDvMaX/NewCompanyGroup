@@ -2,17 +2,19 @@
 
 (function () {
     var dialogController = function ($scope, $mdDialog, $http) {
+        $scope.date = new Date();
 
         $scope.create = function () {
             var date = $scope.date,
-                queryDate = date.getMilliseconds();
+                queryDate = date.getMilliseconds(),
+                query = 'http://www.cbr.ru/scripts/XML_daily_eng.asp?date_req=22/01/2007';
 
             $http({
                 method: 'GET',
                 // url: 'http://www.cbr.ru/scripts/XML_daily_eng.asp?date_req=' + queryDate,
-                url: 'http://localhost:9090/hello',
+                url: 'http://localhost:9000/hello',
                 params: {
-                    date: queryDate
+                    url: query
                 //     what: text,
                 //     point: $scope.paths.c1.latlngs.lng + ',' + $scope.paths.c1.latlngs.lat,
                 //     radius: Math.floor($scope.paths.c1.radius),
