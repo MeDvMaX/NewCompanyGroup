@@ -11,16 +11,9 @@
 
             $http({
                 method: 'GET',
-                // url: 'http://www.cbr.ru/scripts/XML_daily_eng.asp?date_req=' + queryDate,
-                url: 'http://localhost:9000/hello',
+                url: 'http://localhost:9000/responseRouter',
                 params: {
                     url: query
-                //     what: text,
-                //     point: $scope.paths.c1.latlngs.lng + ',' + $scope.paths.c1.latlngs.lat,
-                //     radius: Math.floor($scope.paths.c1.radius),
-                //     sort: 'distance',
-                //     version: '1.3',
-                //     key: 'ruczoy1743',
                 }
             })
                 .then(function (response) {
