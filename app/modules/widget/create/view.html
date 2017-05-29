@@ -1,10 +1,36 @@
 <md-dialog class="create-widget" aria-label="CreateWidget">
-    <md-dialog-content layout="row">
-        <md-input-container>
-            <label>Enter date</label>
-            <md-datepicker ng-model="date"></md-datepicker>
-        </md-input-container>
-        <div class="controll-menu">
+    <md-dialog-content>
+        <div>
+            <md-input-container>
+              <label>State</label>
+              <md-select  class="select" ng-model="state">
+                <md-option ng-repeat="state in states" ng-value="state" >
+                  {{state.displayName}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+        </div>
+        <div class="date-container">
+            <md-input-container ng-show='display.startDate'>
+                <label>From</label>
+                <md-datepicker ng-model="startDate"></md-datepicker>
+            </md-input-container>
+            <md-input-container ng-show='display.endDate'>
+                <label>to</label>
+                <md-datepicker ng-model="endDate"></md-datepicker>
+            </md-input-container>
+        </div>
+        <div ng-show='display.quotation'>
+            <md-input-container>
+              <label>Quotation</label>
+              <md-select  class="select" ng-model="quotation">
+                <md-option ng-repeat="quotation in quotations" ng-value="quotation">
+                  {{quotation.displayName}}
+                </md-option>
+              </md-select>
+            </md-input-container>
+        </div>
+        <div flex class="controll-menu">
             <md-button class="menu-button" ng-click="create()">add</md-button>
             <md-button class="menu-button" ng-click="close()">close</md-button>
         </div>

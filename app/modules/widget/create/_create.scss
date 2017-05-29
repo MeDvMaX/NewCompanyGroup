@@ -5,13 +5,25 @@
 
     > md-dialog-content {
         background: rgb(133, 133, 133);
+        display: -webkit-flex;
+        display: flex;
+        overflow: hidden;
+        > .date-container {
+            display: -webkit-flex;
+            display: flex;
+            flex-flow: row;
+        }
         > .controll-menu {
             position: fixed;
             right: 5px;
             bottom: 5px;
-            > .menu-button {
-
-            }
+        }
+        .select {
+            margin-left: 15px;
+            width: 420px;
+        }
+        md-input-container {
+            margin: 20px 30px;
         }
     }
 }

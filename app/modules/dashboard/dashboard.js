@@ -2,12 +2,70 @@
 
 (function () {
     var dialogController = function ($scope, $mdDialog, $http) {
-        $scope.date = new Date();
+        var toQueryFormatDate = function (date) {
+                var formatNubmer = function (num) {
+                    if (num < 10) {
+                        return '0' + num;
+                    } else {
+                        return '' + num;
+                    }
+                };
 
-        $scope.create = function () {
-            var date = $scope.date,
-                queryDate = date.getMilliseconds(),
-                query = 'http://www.cbr.ru/scripts/XML_daily_eng.asp?date_req=22/01/2007';
+                return formatNubmer(date.getDate()) + '/' + formatNubmer(1+date.getMonth()) + '/' + date.getFullYear();
+            },
+            selectUrl = function (query) {
+                switch (query.id) {
+                    case 1 || 2:
+                        query.url.replace('startDate', toQueryFormatDate($scope.startDate));
+                    case 2:
+                        query.url.replace('endDate', toQueryFormatDate($scope.endDate));
+                        query.url.replace('quotation', toQueryFormatDate($scope.quotation));
+                        break;
+                }
+            }
+        $scope.query = null;
+        $scope.states = [
+                {
+                    displayName: 'Currency quotations for the date',
+                    url: 'http://www.cbr.ru/scripts/XML_daily_eng.asp?date_req=startDate',
+                    id: 1
+                },
+                {
+                    displayName: 'Quotation dynamics',
+                    url: 'www.cbr.ru/scripts/XML_dynamic.asp?date_req1=startDate&date_req2=endDate&VAL_NM_RQ=quotation',
+                    id: 2
+                }
+            ];
+        $scope.display = {
+            startDate: false,
+            endDate: false,
+            quotation: false
+        };
+
+        $scope.$watch('state', function(newValue, oldValue) {
+            switch (newValue && newValue.id) {
+                case 1:
+                    $scope.query = newValue;
+                    $scope.display = {
+                        startDate: true,
+                        endDate: false,
+                        quotation: false
+                    };
+                    break;
+                case 2:
+                    $scope.create('http://www.cbr.ru/scripts/XML_val.asp?d=0');
+                    $scope.query = newValue;
+                    $scope.display = {
+                        startDate: true,
+                        endDate: true,
+                        quotation: true
+                    };
+                    break;
+            }
+        });
+
+        $scope.create = function (url) {
+            var query = url ? url : selectUrl($scope.query);
 
             $http({
                 method: 'GET',
@@ -18,24 +76,15 @@
             })
                 .then(function (response) {
                     debugger;
-                    if (response.data.response_code === '200') {
-                        map.markers = new L.FeatureGroup();
-                        for (var i = 0; i < response.data.result.length; i++) {
-                            var latlng = [Number(response.data.result[i].lat), Number(response.data.result[i].lon)];
-                            var marker = L.marker(latlng).bindPopup(L.popup.angular({
-                                template: '<div ng-include="\'popup.html\'"></div>',
-                                compileMessage: true,
-                                minWidth: 200,
-                                controller: ['$content', function ($content) {
-                                }]
-                            }).setContent({
-                                'scope': response.data.result[i],
-                            }));
-                            map.markers.addLayer(marker);
-                        }
-                        map.addLayer(map.markers);
-                    } else {
-                        alert(response.data.error_message);
+                    if (url) {
+                        $scope.quotations = [];
+                        response.data.Valuta.Item.forEach(function(element, index) {
+                            debugger;
+                            $scope.quotations.push({
+                                displayName: element.engName,
+                                id: element.$.ID
+                            });
+                        });
                     }
                 }, function (response) {
                     alert(response.status);
@@ -45,6 +94,7 @@
         $scope.close = function () {
             $mdDialog.cancel();
         };
+
     };
 
     var serviceFunction = function ($scope, $mdDialog) {

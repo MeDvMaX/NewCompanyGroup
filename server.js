@@ -14,7 +14,7 @@ app.get('/responseRouter', function (req, res) {
     var query = req.query;
     request(query.url, function (error, response, body) {
         parseString(body, function (err, result) {
-            res.end(JSON.stringify(result.ValCurs));
+            res.end(JSON.stringify(result));
         });
     });
 
