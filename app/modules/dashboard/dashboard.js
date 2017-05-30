@@ -14,14 +14,16 @@
                 return formatNubmer(date.getDate()) + '/' + formatNubmer(1+date.getMonth()) + '/' + date.getFullYear();
             },
             selectUrl = function (query) {
-                switch (query.id) {
-                    case 1 || 2:
-                        query.url.replace('startDate', toQueryFormatDate($scope.startDate));
-                    case 2:
-                        query.url.replace('endDate', toQueryFormatDate($scope.endDate));
-                        query.url.replace('quotation', toQueryFormatDate($scope.quotation));
-                        break;
+                var url = query.url;
+                if (query && query.id) {
+                    url = url.replace('startDate', toQueryFormatDate($scope.startDate));
+                    if (query.id === 2) {
+                        url = url.replace('endDate', toQueryFormatDate($scope.endDate));
+                        url = url.replace('quotation', $scope.quotation.id);
+                    }
+                    return url;
                 }
+                return null;
             }
         $scope.query = null;
         $scope.states = [
@@ -32,7 +34,7 @@
                 },
                 {
                     displayName: 'Quotation dynamics',
-                    url: 'www.cbr.ru/scripts/XML_dynamic.asp?date_req1=startDate&date_req2=endDate&VAL_NM_RQ=quotation',
+                    url: 'http://www.cbr.ru/scripts/XML_dynamic.asp?date_req1=startDate&date_req2=endDate&VAL_NM_RQ=quotation',
                     id: 2
                 }
             ];
@@ -78,13 +80,35 @@
                     debugger;
                     if (url) {
                         $scope.quotations = [];
-                        response.data.Valuta.Item.forEach(function(element, index) {
-                            debugger;
+                        response.data.Valuta.Item.forEach(function(record, index) {
                             $scope.quotations.push({
-                                displayName: element.engName,
-                                id: element.$.ID
+                                displayName: record.EngName[0],
+                                id: record.$.ID
                             });
                         });
+                    } else {
+                        var records = response.data.ValCurs,
+                            widget = {};
+
+                        if (records) { 
+                            widget = {
+                                name: records.$.name,
+                                tooltip: records.$,
+                                items: [],
+                                sizeX: 1,
+                                sizeY: 1
+                            };
+
+                            widget.tooltip.nominal = records.Record[0].Nominal[0];
+                            records.Record.forEach(function(record, index) {
+                                widget.items.push({
+                                    date: record.$.Date,
+                                    value: record.Value[0]
+                                });
+                            });
+
+                            $scope.dashboard[$scope.tempDashboardId].widgets.push(widget);
+                        }
                     }
                 }, function (response) {
                     alert(response.status);
@@ -199,6 +223,7 @@
         };
 
         $scope.addWidget = function (list) {
+            $scope.tempDashboardId = list.dashboard.id;
             $mdDialog.show({
                 controller: dialogController,
                 templateUrl: '/modules/widget/create/view.html'
