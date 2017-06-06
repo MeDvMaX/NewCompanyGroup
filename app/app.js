@@ -64,5 +64,8 @@
     angular.module('app', dependencies)
         .config(configFunction)
         .controller('appController', controllerFunction)
+        .run(function($rootScope) {
+            $rootScope.test = {};
+        })
 
 })();

@@ -1,7 +1,7 @@
 'use strict';
 
 (function () {
-    var dialogController = function ($scope, $mdDialog, $http) {
+    var dialogController = function ($scope, $rootScope, $mdDialog, $http) {
         var toQueryFormatDate = function (date) {
                 var formatNubmer = function (num) {
                     if (num < 10) {
@@ -90,25 +90,28 @@
                         var records = response.data.ValCurs,
                             widget = {};
 
-                        if (records) { 
-                            widget = {
-                                name: records.$.name,
-                                tooltip: records.$,
-                                items: [],
-                                sizeX: 1,
-                                sizeY: 1
-                            };
 
-                            widget.tooltip.nominal = records.Record[0].Nominal[0];
-                            records.Record.forEach(function(record, index) {
-                                widget.items.push({
-                                    date: record.$.Date,
-                                    value: record.Value[0]
-                                });
-                            });
+$rootScope.tte = '22333';
+console.info('1');
+                        // if (records) { 
+                        //     widget = {
+                        //         name: records.$.name,
+                        //         tooltip: records.$,
+                        //         items: [],
+                        //         sizeX: 1,
+                        //         sizeY: 1
+                        //     };
 
-                            $scope.dashboard[$scope.tempDashboardId].widgets.push(widget);
-                        }
+                        //     widget.tooltip.nominal = records.Record[0].Nominal[0];
+                        //     records.Record.forEach(function(record, index) {
+                        //         widget.items.push({
+                        //             date: record.$.Date,
+                        //             value: record.Value[0]
+                        //         });
+                        //     });
+
+                        //     $scope.dashboard[$scope.tempDashboardId].widgets.push(widget);
+                        // }
                     }
                 }, function (response) {
                     alert(response.status);
@@ -121,7 +124,7 @@
 
     };
 
-    var serviceFunction = function ($scope, $mdDialog) {
+    var serviceFunction = function ($scope, $rootScope, $mdDialog) {
         $scope.dashboardId = 0;
         $scope.gridsterOptions = {
             columns: 2,
@@ -233,6 +236,7 @@
                 }, function () {
                     $scope.status = 'You cancelled the dialog.';
                 });
+                console.info($rootScope.tte);
             // $scope.dashboards[list.dashboard.id].widgets.push({
             //     name: "New Widget",
             //     sizeX: 1,
