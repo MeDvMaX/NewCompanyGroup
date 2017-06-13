@@ -3,8 +3,8 @@
 var gulp        = require('gulp'),
     sass        = require('gulp-sass'),
     sassGlob    = require('gulp-sass-glob'),
-    bower       = require('gulp-bower'),
     webserver   = require('gulp-webserver'),
+    nodemon     = require('gulp-nodemon'),
     jshint      = require('gulp-jshint');
 
 var webServerPort = '9000';
@@ -14,6 +14,7 @@ var proxyServers = [
         target: 'http://localhost:9090/'
     }
 ];
+
 // gulp.task('clean', function () {
 //     return del.sync(['./dist/*', '!./dist/components/*']);
 // });
@@ -66,6 +67,13 @@ gulp.task('webserver', function () {
         }));
 });
 
-gulp.task('server', ['build', 'html:watch', 'js:watch', 'sass:watch', 'webserver']);
+gulp.task('nodemon', function() {
+    nodemon({
+        script: 'server.js',
+        watch: 'server.js'
+    })
+});
+
+gulp.task('server', ['build', 'html:watch', 'js:watch', 'sass:watch', 'nodemon', 'webserver']);
 
 gulp.task('build', ['sass', 'js', 'html', 'img']);

@@ -19,7 +19,13 @@ $blackText: rgb(66, 66, 66);
         }
         > md-content {
             background: rgba(66, 66, 66, .4);
-
+            .box-content {
+                overflow-y: scroll;
+                height: calc(100% - 80px);
+            }
+            .mark {
+                    background-color: rgba(139,195,74, .4);
+                }
         }
     }
     md-toolbar {

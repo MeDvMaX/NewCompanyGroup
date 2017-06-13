@@ -25,6 +25,15 @@
                             <md-icon>add</md-icon>
                         </md-button>
                     </md-list-item>
+                    <md-list-item>
+                        <md-input-container>
+                          <label>New dashboard</label>
+                          <input>
+                        </md-input-container>
+                        <md-button ng-click="addWidget(this)" class="md-icon-button">
+                            <md-icon>add</md-icon>
+                        </md-button>
+                    </md-list-item>
                 </md-list>
             </md-content>
         </md-sidenav>
@@ -35,18 +44,21 @@
                         <div class="box">
                             <div class="box-header">
                                 <h3>{{ widget.name }}</h3>
-                                <div class="box-header-btns pull-right">
-                                    <a title="settings" ng-click="openSettings(widget)"><i class="glyphicon glyphicon-cog"></i></a>
-                                    <a title="Remove widget" ng-click="remove(widget)"><i class="glyphicon glyphicon-trash"></i></a>
-                                </div>
+                                <!-- <div class="box-header-btns pull-right">
+                                    <a title="settings" ng-click="openSettings(widget)">223<i class="glyphicon glyphicon-cog"></i></a>
+                                    <a title="Remove widget" ng-click="remove(widget)">3333<i class="glyphicon glyphicon-trash"></i></a>
+                                </div> -->
                             </div>
-                            <div class="box-content">
-                                <div ng-repeat="item in widget.items">
-                                    <span>
-                                        {{item}}
+                            <md-list class="box-content">
+                                <md-list-item ng-repeat="item in widget.items" class="md-1-line" ng-click="markReading(this)" ng-class="item.class">
+                                    <span flex>
+                                        {{item.value}}
                                     </span>
-                                </div>
-                            </div>
+                                    <span>
+                                        {{item.date}}
+                                    </span>
+                                </md-list-item>
+                            </md-list>
                         </div>
                     </li>
                 </ul>

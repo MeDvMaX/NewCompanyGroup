@@ -77,7 +77,7 @@
                 }
             })
                 .then(function (response) {
-                    debugger;
+                    // debugger;
                     if (url) {
                         $scope.quotations = [];
                         response.data.Valuta.Item.forEach(function(record, index) {
@@ -90,28 +90,26 @@
                         var records = response.data.ValCurs,
                             widget = {};
 
+                        if (records) { 
+                            widget = {
+                                name: records.$.name,
+                                tooltip: records.$,
+                                items: [],
+                                sizeX: 1,
+                                sizeY: 1
+                            };
 
-$rootScope.tte = '22333';
-console.info('1');
-                        // if (records) { 
-                        //     widget = {
-                        //         name: records.$.name,
-                        //         tooltip: records.$,
-                        //         items: [],
-                        //         sizeX: 1,
-                        //         sizeY: 1
-                        //     };
+                            widget.tooltip.nominal = records.Record[0].Nominal[0];
+                            records.Record.forEach(function(record, index) {
+                                widget.items.push({
+                                    date: record.$.Date,
+                                    value: record.Value[0]
+                                });
+                            });
 
-                        //     widget.tooltip.nominal = records.Record[0].Nominal[0];
-                        //     records.Record.forEach(function(record, index) {
-                        //         widget.items.push({
-                        //             date: record.$.Date,
-                        //             value: record.Value[0]
-                        //         });
-                        //     });
-
-                        //     $scope.dashboard[$scope.tempDashboardId].widgets.push(widget);
-                        // }
+                            $rootScope.$emit('addWidgetEvent', widget);
+                            $mdDialog.cancel();
+                        }
                     }
                 }, function (response) {
                     alert(response.status);
@@ -155,9 +153,18 @@ console.info('1');
                     sizeX: 1,
                     name: "Widget 1",
                     items: [
-                        'sddsdsd',
-                        'sddssdsssd',
-                        'sdsdsdsd'
+                        {
+                            value: 9993,
+                            date: 3232
+                        },
+                        {
+                            value: 9993,
+                            date: 3232
+                        },
+                        {
+                            value: 9993,
+                            date: 3232
+                        }
                     ]
                 }, {
                     col: 2,
@@ -236,15 +243,17 @@ console.info('1');
                 }, function () {
                     $scope.status = 'You cancelled the dialog.';
                 });
-                console.info($rootScope.tte);
-            // $scope.dashboards[list.dashboard.id].widgets.push({
-            //     name: "New Widget",
-            //     sizeX: 1,
-            //     sizeY: 1
-            // });
         };
-    };
 
+        $scope.markReading = function (reading) {
+            reading.item.class = !reading.item.class ? 'mark' : '';
+        };
+
+        $rootScope.$on('addWidgetEvent', function (event, data) {
+            $scope.dashboards[$scope.tempDashboardId].widgets.push(data);
+        });
+
+    };
 
     angular.module('dashboard', ['gridster'])
         .controller('DashboardController', serviceFunction);
