@@ -16,7 +16,6 @@
                     md-component-id="left"
                     md-whiteframe="4"
                     md-is-locked-open="open">
-
             <md-content layout-margin>
                 <md-list>
                     <md-list-item ng-repeat="dashboard in dashboards" ng-click="changeDashboard(this)">
@@ -43,11 +42,15 @@
                     <li gridster-item="widget" ng-repeat="widget in dashboards[dashboardId].widgets">
                         <div class="box">
                             <div class="box-header">
-                                <h3>{{ widget.name }}</h3>
-                                <!-- <div class="box-header-btns pull-right">
-                                    <a title="settings" ng-click="openSettings(widget)">223<i class="glyphicon glyphicon-cog"></i></a>
-                                    <a title="Remove widget" ng-click="remove(widget)">3333<i class="glyphicon glyphicon-trash"></i></a>
-                                </div> -->
+                                <h3>{{widget.name}}</h3>
+                                <div class="box-header-btns pull-right">
+                                    <md-batton ng-click="download(widget)" class="material-icons">file download
+                                    <md-tooltip md-direction="left">Download</md-tooltip>
+                                    </button>
+                                    <md-button ng-click="removeWidget(dashboards[dashboardId].widgets, $index)" class="material-icons">clear
+                                    <md-tooltip md-direction="left">Remove widget</md-tooltip>
+                                    </button>
+                                </div>
                             </div>
                             <md-list class="box-content">
                                 <md-list-item ng-repeat="item in widget.items" class="md-1-line" ng-click="markReading(this)" ng-class="item.class">
