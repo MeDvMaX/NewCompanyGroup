@@ -24,8 +24,8 @@ $blackText: rgb(66, 66, 66);
                 height: calc(100% - 80px);
             }
             .mark {
-                    background-color: rgba(139,195,74, .4);
-                }
+                background-color: rgba(139, 195, 74, .4);
+            }
         }
     }
     md-toolbar {
@@ -60,10 +60,16 @@ $blackText: rgb(66, 66, 66);
         border-bottom: 1px solid #ccc;
         cursor: move;
         position: relative;
+        > .setting-icons {
+            position: absolute;
+            right: 0;
+            top: -23px;
+        }
     }
     .box-header h3 {
         margin-top: 10px;
         display: inline-block;
+        line-height: 20px;
     }
     .box-content {
         padding: 10px;

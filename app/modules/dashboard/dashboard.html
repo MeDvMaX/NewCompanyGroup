@@ -26,8 +26,8 @@
                     </md-list-item>
                     <md-list-item>
                         <md-input-container>
-                          <label>New dashboard</label>
-                          <input>
+                            <label>New dashboard</label>
+                            <input>
                         </md-input-container>
                         <md-button ng-click="addWidget(this)" class="md-icon-button">
                             <md-icon>add</md-icon>
@@ -43,17 +43,20 @@
                         <div class="box">
                             <div class="box-header">
                                 <h3>{{widget.name}}</h3>
-                                <div class="box-header-btns pull-right">
-                                    <md-batton ng-click="download(widget)" class="material-icons">file download
-                                    <md-tooltip md-direction="left">Download</md-tooltip>
-                                    </button>
-                                    <md-button ng-click="removeWidget(dashboards[dashboardId].widgets, $index)" class="material-icons">clear
-                                    <md-tooltip md-direction="left">Remove widget</md-tooltip>
-                                    </button>
+                                <div class="setting-icons">
+                                    <md-button ng-click="download(widget)"
+                                               class="material-icons">file_download
+                                    <md-tooltip md-direction="top">Download</md-tooltip>
+                                    </md-button>
+                                    <md-button ng-click="removeWidget(dashboards[dashboardId].widgets, $index)"
+                                               class="material-icons">clear
+                                    <md-tooltip md-direction="top">Remove widget</md-tooltip>
+                                    </md-button>
                                 </div>
                             </div>
                             <md-list class="box-content">
-                                <md-list-item ng-repeat="item in widget.items" class="md-1-line" ng-click="markReading(this)" ng-class="item.class">
+                                <md-list-item ng-repeat="item in widget.items" class="md-1-line"
+                                              ng-click="markReading(this)" ng-class="item.class">
                                     <span flex>
                                         {{item.value}}
                                     </span>
