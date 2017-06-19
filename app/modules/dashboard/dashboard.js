@@ -77,7 +77,6 @@
                 }
             })
                 .then(function (response) {
-                    // debugger;
                     if (url) {
                         $scope.quotations = [];
                         response.data.Valuta.Item.forEach(function(record, index) {
@@ -152,27 +151,7 @@
                     sizeY: 1,
                     sizeX: 1,
                     name: "Widget 1",
-                    items: [
-                        {
-                            value: 9993,
-                            date: 3232
-                        },
-                        {
-                            value: 9993,
-                            date: 3232
-                        },
-                        {
-                            value: 9993,
-                            date: 3232
-                        }
-                    ]
-                }, {
-                    col: 2,
-                    row: 1,
-                    sizeY: 1,
-                    sizeX: 1,
-                    name: "Widget 2"
-                }]
+                    items: []
             },
             {
                 id: 1,
@@ -183,22 +162,7 @@
                     sizeY: 1,
                     sizeX: 1,
                     name: "Widget 1",
-                    items: [
-                        'sddsdsd',
-                        'sddssssd',
-                        'sdsdsdsd'
-                    ]
-                }, {
-                    col: 2,
-                    row: 1,
-                    sizeY: 1,
-                    sizeX: 1,
-                    name: "Widget 2",
-                    items: [
-                        'sddssssd',
-                        'sdsdsdsd'
-                    ]
-                }]
+                    items: []
             },
             {
                 id: 2,
@@ -209,18 +173,7 @@
                     sizeY: 1,
                     sizeX: 1,
                     name: "Widget 1",
-                    items: [
-                        'sddsdsd',
-                        'sddssssd',
-                        'sdsdsdsd'
-                    ]
-                }, {
-                    col: 2,
-                    row: 1,
-                    sizeY: 1,
-                    sizeX: 1,
-                    name: "Widget 2"
-                }]
+                    items: []
             }
         ];
 
@@ -245,8 +198,20 @@
                 });
         };
 
+        $scope.removeWidget = function (widgets, index) {
+            widgets.splice(index ,1);
+        };
+
         $scope.markReading = function (reading) {
             reading.item.class = !reading.item.class ? 'mark' : '';
+        };
+
+        $scope.downloadData = function (widget) {
+            var blob = new Blob(widget.items, {
+                type: "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=utf-8"
+            });
+
+            saveAs(blob, "Data" + noew Date() + ".xls");
         };
 
         $rootScope.$on('addWidgetEvent', function (event, data) {
